@@ -6,7 +6,7 @@ public class InteligenciaArtificial {
 	
 	public static void main(String[] args) {
 		
-		Labirinto labirinto = new Labirinto(2);
+		Labirinto labirinto = new Labirinto(6);
 		
 		labirinto.exibirLabirinto();
 	}
