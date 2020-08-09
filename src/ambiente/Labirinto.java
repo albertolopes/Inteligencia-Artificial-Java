@@ -4,7 +4,7 @@ import agente.AgenteLabirinto;
 import geral.PosicaoXY;
 
 public class Labirinto {
-	
+
 	private int tamanhoLabirinto;
 	
 	private String[][] labirinto;
@@ -22,26 +22,41 @@ public class Labirinto {
 		this.construirNovoLabirinto();
 	}
 	
-	//Construir o labirinto
+	// Construir o labirinto
 	private void construirNovoLabirinto() {
 		labirinto = new String[this.tamanhoLabirinto][this.tamanhoLabirinto];
-		for (int x = 0; x < tamanhoLabirinto; x++) {
-			for(int y = 0; y < tamanhoLabirinto; y++) {
-				labirinto[x][y] = "S";
+		for (int i = 0; i < this.tamanhoLabirinto; i++) {
+			for (int j = 0; j < this.tamanhoLabirinto; j++) {
+				this.labirinto[i][j] = "S";
 			}
 		}
 	}
 	
 	public void exibirLabirinto() {
-		for (int x = 0; x < tamanhoLabirinto; x++) {
-			for(int y = 0; y < tamanhoLabirinto; y++) {
-				System.out.print("| " + labirinto[x][y] + " |");
+		atualizarPosicaoAgente();
+		for (int i = 0; i < tamanhoLabirinto; i++) {
+			for (int j = 0; j < tamanhoLabirinto; j++) {
+				if (labirinto[i][j].equals("*A*")) {
+					System.out.print("|" + labirinto[i][j] + "|");
+				} else {
+					System.out.print("| " + labirinto[i][j] + " |");
+				}
+				
 			}
 			System.out.println("");
+		}
+		System.out.println("");
+	}
+
+	private void atualizarPosicaoAgente() {
+		if (this.agente != null) {
+			PosicaoXY posAgente = this.agente.getPosicao();
+			labirinto[posAgente.getPosX()][posAgente.getPosY()] = "*A*";
 		}
 	}
 
 	public int getTamanhoLabirinto() {
+		
 		return this.tamanhoLabirinto;
 	}
 
